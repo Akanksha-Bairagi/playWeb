@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Catch My Love ❤️</title>
+
+  <style>
+    body {
+      margin: 0;
+      text-align: center;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #ff9a9e, #fad0c4);
+      overflow: hidden;
+    }
+
+    h1 {
+      margin-top: 40px;
+      color: white;
+    }
+
+    #score {
+      font-size: 20px;
+      color: white;
+    }
+
+    #heart {
+      font-size: 50px;
+      position: absolute;
+      cursor: pointer;
+    }
+
+    /* 💖 Big centered popup */
+    #popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.8);
+      background: white;
+      color: #ff4d6d;
+      padding: 30px 40px;
+      border-radius: 25px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+      font-size: 20px;
+      text-align: center;
+      width: 70%;
+      max-width: 350px;
+
+      opacity: 0;
+      transition: all 0.3s ease;
+      pointer-events: none;
+    }
+
+    #popup.show {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Catch My Love ❤️</h1>
+  <p id="score">Score: 0</p>
+  <div id="heart">💖</div>
+
+  <!-- 💬 Popup -->
+  <div id="popup"></div>
+
+  <script>
+    const heart = document.getElementById("heart");
+    const scoreText = document.getElementById("score");
+    const popup = document.getElementById("popup");
+
+    let score = 0;
+
+    function moveHeart() {
+      const x = Math.random() * (window.innerWidth - 60);
+      const y = Math.random() * (window.innerHeight - 60);
+      heart.style.left = x + "px";
+      heart.style.top = y + "px";
+    }
+
+    function showPopup(message) {
+      popup.innerText = message;
+      popup.classList.add("show");
+
+      setTimeout(() => {
+        popup.classList.remove("show");
+      }, 2500);
+    }
+
+    heart.onclick = () => {
+      score++;
+      scoreText.innerText = "Score: " + score;
+
+      if (score === 5) {
+        showPopup("Okay okay you caught my heart 😳❤️");
+      }
+
+      if (score === 10) {
+        showPopup("Fine… I’m officially yours now 🫶");
+      }
+
+      moveHeart();
+    };
+
+    window.onload = moveHeart;
+  </script>
+
+</body>
+</html>
